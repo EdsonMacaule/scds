@@ -7,12 +7,15 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+//import mz.co.scds.form.Form_HProcess;
 import mz.co.scds.model.StatusType;
 
 
 public class Table extends JTable{
+//     private Form_HProcess process;
 
     public Table() {
+//        process = new Form_HProcess();
         setShowHorizontalLines(true);
         setGridColor(new Color(230,230,230));
         setRowHeight(40);
@@ -37,17 +40,26 @@ public class Table extends JTable{
                     setBorder(noFocusBorder);
                     if(selected){
                     com.setForeground(new Color(56, 89, 128));
+//                        System.out.println("Olá");
+                   
                     }else{
+//                        System.out.println("Olá");
                     com.setForeground(new Color(102, 102, 102));
                     }
                     return com;
+                    
                 }else{
                     StatusType type=(StatusType)o;
                     CellStatus cell=new CellStatus(type);
                     return cell;
+                    
                 } 
                 
+                
+                
             }
+            
+            
         
         });
     }
@@ -56,5 +68,7 @@ public class Table extends JTable{
         DefaultTableModel model = (DefaultTableModel)getModel();
         model.addRow(row);
     }
+    
+    
     
 }

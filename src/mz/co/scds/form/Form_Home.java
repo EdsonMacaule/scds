@@ -7,6 +7,7 @@ import mz.co.scds.model.StatusType;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.TableModel;
 import mz.co.scds.swing.ScrollBar;
 
 
@@ -36,11 +37,9 @@ public class Form_Home extends javax.swing.JPanel {
         table.addRow(new Object[]{"AB0005-Montepuez","Secretariado","12 Out,2022","04 Nov,2022", StatusType.Atrasado,"50%"});
         table.addRow(new Object[]{"AB0005-Montepuez","Secretariado","12 Nov,2022","20 Nov,2022", StatusType.Encerrado,"100%"});
         table.addRow(new Object[]{"AB0005-Montepuez","Secretariado","12 Nov,2022","20 Nov,2022", StatusType.Encerrado,"100%"});
-        
-        
-        
+         
     }
-
+    Show_table_row_data tableRowData = new Show_table_row_data();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,8 +70,6 @@ public class Form_Home extends javax.swing.JPanel {
         panel.add(card2);
         panel.add(card3);
 
-        panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(127, 127, 127));
         jLabel3.setText("Processos");
@@ -93,6 +90,11 @@ public class Form_Home extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
             }
         });
         spTable.setViewportView(table);
@@ -147,6 +149,14 @@ public class Form_Home extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        int index = table.getSelectedRow();
+        TableModel model = table.getModel();
+        String id = model.getValueAt(index,0).toString();
+        
+//        System.out.println(index +  " : Posição");
+    }//GEN-LAST:event_tableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

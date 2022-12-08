@@ -3,23 +3,31 @@ package mz.co.scds.main;
 import java.awt.Color;
 import javax.swing.JComponent;
 import mz.co.scds.event.EventMenuSelected;
+import mz.co.scds.form.Form_HProcess;
 import mz.co.scds.form.Form_Home;
 import mz.co.scds.form.Form_Notification;
-import mz.co.scds.form.Form_Process;
+//import mz.co.scds.form.Form_Process;
+import mz.co.scds.form.Form_Register;
 import mz.co.scds.swing.ScrollBar;
+import org.jdesktop.animation.timing.Animator;
+import org.jdesktop.animation.timing.TimingTarget;
+import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
     private Form_Home home;
     private Form_Notification notific;
-    private Form_Process process;
-
+    private Form_HProcess process;
+    private Form_Register regist;
+    private Animator animator;
+    
     public TelaPrincipal() {
         initComponents();
         setBackground(new Color(000000));
         home = new Form_Home();
         notific = new Form_Notification();
-        process = new Form_Process();
+        process = new Form_HProcess();
+        regist = new Form_Register();
         menu.initMoving(TelaPrincipal.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -30,21 +38,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     setForm(notific);
                 } else if (index == 2) {
                     setForm(process);
+                } else if (index == 3) {
+                    setForm(regist);
                 }
             }
-
+            
         });
         //Iniciado o sistema com a tela Home
         setForm(home);
+        TimingTarget target = new TimingTargetAdapter() {
+            @Override
+            public void timingEvent(float fraction) {
+                double width;
+                if(menu.isShowing()){
+                }
+            }
+            
+            @Override
+            public void end() {
+                
+            }
+            
+        };
+        animator = new Animator(500, target);
+        animator.setResolution(0);
+        animator.setDeceleration(0.5F);
+        animator.setAcceleration(0.5F);
+        
     }
-
+    
     private void setForm(JComponent com) {
         mainPanel.removeAll();
         mainPanel.add(com);
         mainPanel.repaint();
         mainPanel.revalidate();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
